@@ -13,6 +13,10 @@ export function getPopularAuthors(limit = 8) {
   })
 }
 
+export function searchAuthors(q: string) {
+  return http.get<{ authors: Author[] }>('/authors', { params: { q } })
+}
+
 export type AuthorBooksResponse = {
   author: Author
   bookCount: number

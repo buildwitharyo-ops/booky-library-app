@@ -15,6 +15,11 @@ import { BorrowSuccessPage } from '@/features/cart/borrow-success-page'
 import { BorrowedListPage } from '@/features/loans/borrowed-list-page'
 import { ProfilePage } from '@/features/profile/profile-page'
 import { MyReviewsPage } from '@/features/reviews/my-reviews-page'
+import { AdminFormLayout } from '@/components/layout/admin-form-layout'
+import { AdminBooksPage } from '@/features/admin/admin-books-page'
+import { AdminUsersPage } from '@/features/admin/admin-users-page'
+import { AdminLoansPage } from '@/features/admin/admin-loans-page'
+import { BookFormPage } from '@/features/admin/book-form-page'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -62,11 +67,14 @@ export default function App() {
       <Route element={<RequireAdmin />}>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/books" replace />} />
-          <Route path="books" element={<Placeholder title="Book List" />} />
-          <Route path="books/new" element={<Placeholder title="Add Book" />} />
-          <Route path="books/:id/edit" element={<Placeholder title="Edit Book" />} />
-          <Route path="users" element={<Placeholder title="User List" />} />
-          <Route path="loans" element={<Placeholder title="Borrowed List" />} />
+          <Route path="books" element={<AdminBooksPage />} />
+          <Route path="users" element={<AdminUsersPage />} />
+          <Route path="loans" element={<AdminLoansPage />} />
+        </Route>
+        {/* Book form uses admin chrome without the section tabs */}
+        <Route element={<AdminFormLayout />}>
+          <Route path="/admin/books/new" element={<BookFormPage />} />
+          <Route path="/admin/books/:id/edit" element={<BookFormPage />} />
         </Route>
       </Route>
     </Routes>

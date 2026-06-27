@@ -1,23 +1,11 @@
-import { Loader2 } from 'lucide-react'
 import type { Loan } from '@/types/models'
-import { formatDate, dueLabel } from '@/lib/format'
+import { formatDate } from '@/lib/format'
 import { loanDisplayStatus } from '@/lib/loan'
 import { BookCover } from '@/components/book/book-cover'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { DueDatePill, StatusBadge } from '@/components/common/status-badge'
 
-export function LoanCard({
-  loan,
-  onReview,
-  onReturn,
-  isReturning,
-}: {
-  loan: Loan
-  onReview: (loan: Loan) => void
-  onReturn: (loan: Loan) => void
-  isReturning?: boolean
-}) {
+export function AdminLoanCard({ loan }: { loan: Loan }) {
   const status = loanDisplayStatus(loan)
   const isReturned = status === 'Returned'
 
@@ -36,12 +24,12 @@ export function LoanCard({
         )}
       </div>
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <div className="flex min-w-0 flex-1 items-center gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-4">
           <BookCover
             src={loan.book.coverImage}
             alt={loan.book.title}
-            className="h-24 w-16 shrink-0"
+            className="h-20 w-14 shrink-0"
           />
           <div className="min-w-0">
             {loan.book.category && (
@@ -56,34 +44,17 @@ export function LoanCard({
             <p className="mt-1 text-xs text-muted-foreground">
               {formatDate(loan.borrowedAt)}
               {loan.durationDays ? ` · Duration ${loan.durationDays} Days` : ''}
-              {!isReturned ? ` · ${dueLabel(loan.dueAt)}` : ''}
             </p>
           </div>
         </div>
 
-        <div className="shrink-0 sm:self-center">
-          {isReturned ? (
-            <Button className="w-full sm:w-auto" onClick={() => onReview(loan)}>
-              Give Review
-            </Button>
-          ) : (
-            <Button
-              variant="outline"
-              className="w-full sm:w-auto"
-              onClick={() => onReturn(loan)}
-              disabled={isReturning}
-            >
-              {isReturning ? (
-                <>
-                  <Loader2 className="animate-spin" />
-                  Returning…
-                </>
-              ) : (
-                'Return'
-              )}
-            </Button>
-          )}
-        </div>
+        {loan.borrower && (
+          <div className="shrink-0 text-sm sm:text-right">
+            <p className="text-xs text-muted-foreground">Borrower</p>
+            <p className="font-semibold">{loan.borrower.name}</p>
+            <p className="text-xs text-muted-foreground">{loan.borrower.email}</p>
+          </div>
+        )}
       </div>
     </div>
   )
