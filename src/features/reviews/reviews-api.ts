@@ -13,3 +13,19 @@ export function getBookReviews(bookId: number, page = 1, limit = 6) {
     params: { page, limit },
   })
 }
+
+export type ReviewStats = { rating: number; reviewCount: number }
+
+export type CreateReviewInput = {
+  bookId: number
+  star: number
+  comment?: string
+}
+
+export function createReview(input: CreateReviewInput) {
+  return http.post<{ review: Review; bookStats: ReviewStats }>('/reviews', input)
+}
+
+export function deleteReview(reviewId: number) {
+  return http.delete<{ bookStats: ReviewStats }>(`/reviews/${reviewId}`)
+}

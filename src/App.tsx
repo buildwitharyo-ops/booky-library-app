@@ -12,6 +12,7 @@ import { AuthorBooksPage } from '@/features/authors/author-books-page'
 import { CartPage } from '@/features/cart/cart-page'
 import { CheckoutPage } from '@/features/cart/checkout-page'
 import { BorrowSuccessPage } from '@/features/cart/borrow-success-page'
+import { BorrowedListPage } from '@/features/loans/borrowed-list-page'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -50,7 +51,7 @@ export default function App() {
       <Route element={<RequireAuth />}>
         <Route path="/profile" element={<ProfileLayout />}>
           <Route index element={<Placeholder title="Profile" />} />
-          <Route path="loans" element={<Placeholder title="Borrowed List" />} />
+          <Route path="loans" element={<BorrowedListPage />} />
           <Route path="reviews" element={<Placeholder title="Reviews" />} />
         </Route>
       </Route>
