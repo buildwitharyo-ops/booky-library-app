@@ -13,6 +13,8 @@ import { CartPage } from '@/features/cart/cart-page'
 import { CheckoutPage } from '@/features/cart/checkout-page'
 import { BorrowSuccessPage } from '@/features/cart/borrow-success-page'
 import { BorrowedListPage } from '@/features/loans/borrowed-list-page'
+import { ProfilePage } from '@/features/profile/profile-page'
+import { MyReviewsPage } from '@/features/reviews/my-reviews-page'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -50,9 +52,9 @@ export default function App() {
       {/* Profile area */}
       <Route element={<RequireAuth />}>
         <Route path="/profile" element={<ProfileLayout />}>
-          <Route index element={<Placeholder title="Profile" />} />
+          <Route index element={<ProfilePage />} />
           <Route path="loans" element={<BorrowedListPage />} />
-          <Route path="reviews" element={<Placeholder title="Reviews" />} />
+          <Route path="reviews" element={<MyReviewsPage />} />
         </Route>
       </Route>
 

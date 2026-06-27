@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -61,6 +62,9 @@ export function GiveReviewDialog({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Give Review</DialogTitle>
+          <DialogDescription>
+            Rate this book and share your thoughts.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">

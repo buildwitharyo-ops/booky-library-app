@@ -29,3 +29,12 @@ export function createReview(input: CreateReviewInput) {
 export function deleteReview(reviewId: number) {
   return http.delete<{ bookStats: ReviewStats }>(`/reviews/${reviewId}`)
 }
+
+export type MyReviewsResponse = {
+  reviews: Review[]
+  pagination: Pagination
+}
+
+export function getMyReviews(params: { q?: string; page?: number; limit?: number }) {
+  return http.get<MyReviewsResponse>('/me/reviews', { params })
+}

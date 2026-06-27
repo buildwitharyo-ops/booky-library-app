@@ -18,7 +18,10 @@ export function StarRating({
   return (
     <div
       className={cn('flex items-center gap-1', className)}
-      role={interactive ? 'radiogroup' : undefined}
+      role={interactive ? 'radiogroup' : 'img'}
+      aria-label={
+        interactive ? undefined : `Rating: ${value.toFixed(1)} out of 5`
+      }
     >
       {[1, 2, 3, 4, 5].map((index) => {
         const filled = index <= Math.round(value)
