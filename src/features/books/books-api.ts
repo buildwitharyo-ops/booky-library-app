@@ -1,10 +1,14 @@
 import { http } from '@/lib/api'
-import type { Book } from '@/types/models'
+import type { Book, BookDetail } from '@/types/models'
 import type { Pagination } from '@/types/api'
 
 export type BooksResponse = {
   books: Book[]
   pagination: Pagination
+}
+
+export function getBook(id: number) {
+  return http.get<BookDetail>(`/books/${id}`)
 }
 
 export type BookListParams = {

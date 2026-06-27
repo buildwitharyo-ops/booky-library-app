@@ -1,10 +1,19 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { queryKeys } from '@/lib/queryKeys'
 import {
+  getBook,
   getBooks,
   getRecommendedBooks,
   type BookListParams,
 } from './books-api'
+
+export function useBook(id: number) {
+  return useQuery({
+    queryKey: queryKeys.books.detail(id),
+    queryFn: () => getBook(id),
+    enabled: Number.isFinite(id),
+  })
+}
 
 export function useBooks(params: BookListParams) {
   return useQuery({

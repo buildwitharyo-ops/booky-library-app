@@ -15,8 +15,7 @@ export const queryKeys = {
     books: (id: number) => ['authors', id, 'books'] as const,
   },
   reviews: {
-    byBook: (bookId: number, page: number) =>
-      ['reviews', 'book', bookId, page] as const,
+    byBook: (bookId: number) => ['reviews', 'book', bookId] as const,
   },
   loans: {
     my: (params: Record<string, unknown>) => ['loans', 'my', params] as const,
