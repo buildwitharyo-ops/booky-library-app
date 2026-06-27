@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 import { useAppDispatch } from '@/app/hooks'
 import { logout } from '@/features/auth/authSlice'
 import { queryClient } from '@/lib/queryClient'
+import { getInitials } from '@/lib/utils'
 import type { User } from '@/types/models'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -13,16 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-
-function initials(name: string) {
-  return name
-    .split(' ')
-    .map((part) => part[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join('')
-    .toUpperCase()
-}
 
 export function AccountMenu({
   user,
@@ -46,7 +37,7 @@ export function AccountMenu({
       <DropdownMenuTrigger className="flex items-center gap-2 rounded-full outline-none focus-visible:ring-[3px] focus-visible:ring-ring/30">
         <Avatar className="size-9">
           <AvatarImage src={user.profilePhoto ?? undefined} alt={user.name} />
-          <AvatarFallback>{initials(user.name)}</AvatarFallback>
+          <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
         </Avatar>
         <span className="hidden text-sm font-medium sm:inline">{user.name}</span>
         <ChevronDown className="size-4 text-muted-foreground" />

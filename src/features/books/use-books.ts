@@ -13,6 +13,19 @@ export function useBooks(params: BookListParams) {
   })
 }
 
+export function useInfiniteBooks(params: Omit<BookListParams, 'page'>) {
+  const limit = params.limit ?? 12
+  return useInfiniteQuery({
+    queryKey: queryKeys.books.list({ ...params, limit }),
+    queryFn: ({ pageParam }) => getBooks({ ...params, limit, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const { page, totalPages } = lastPage.pagination
+      return page < totalPages ? page + 1 : undefined
+    },
+  })
+}
+
 export function useRecommendedBooks({
   by = 'rating',
   limit = 10,

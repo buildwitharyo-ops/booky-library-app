@@ -5,16 +5,7 @@ import type { PopularAuthor } from '@/features/authors/authors-api'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ErrorState } from '@/components/common/page-state'
-
-function initials(name: string) {
-  return name
-    .split(' ')
-    .map((part) => part[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join('')
-    .toUpperCase()
-}
+import { getInitials } from '@/lib/utils'
 
 function AuthorCard({ author }: { author: PopularAuthor }) {
   return (
@@ -23,7 +14,7 @@ function AuthorCard({ author }: { author: PopularAuthor }) {
       className="flex items-center gap-3 rounded-xl border p-4 transition hover:bg-muted/50"
     >
       <Avatar className="size-12">
-        <AvatarFallback>{initials(author.name)}</AvatarFallback>
+        <AvatarFallback>{getInitials(author.name)}</AvatarFallback>
       </Avatar>
       <div className="min-w-0">
         <p className="truncate font-semibold">{author.name}</p>

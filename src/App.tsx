@@ -6,6 +6,8 @@ import { RequireAdmin, RequireAuth } from '@/features/auth/require-auth'
 import { LoginPage } from '@/features/auth/login-page'
 import { RegisterPage } from '@/features/auth/register-page'
 import { HomePage } from '@/features/home/home-page'
+import { BookListPage } from '@/features/books/book-list-page'
+import { AuthorBooksPage } from '@/features/authors/author-books-page'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -26,9 +28,9 @@ export default function App() {
       {/* Public site */}
       <Route path="/" element={<PublicLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="books" element={<Placeholder title="Book List" />} />
+        <Route path="books" element={<BookListPage />} />
         <Route path="books/:id" element={<Placeholder title="Book Detail" />} />
-        <Route path="authors/:id" element={<Placeholder title="Books by Author" />} />
+        <Route path="authors/:id" element={<AuthorBooksPage />} />
 
         {/* Borrowing flow needs a signed-in user */}
         <Route element={<RequireAuth />}>

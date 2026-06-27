@@ -12,7 +12,7 @@ export const queryKeys = {
   authors: {
     search: (q: string) => ['authors', 'search', q] as const,
     popular: (limit: number) => ['authors', 'popular', limit] as const,
-    books: (id: number, page: number) => ['authors', id, 'books', page] as const,
+    books: (id: number) => ['authors', id, 'books'] as const,
   },
   reviews: {
     byBook: (bookId: number, page: number) =>
