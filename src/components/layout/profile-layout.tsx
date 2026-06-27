@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
 import { Container } from './container'
+import { SuspenseOutlet } from './suspense-outlet'
 import { SegmentedTabs } from '@/components/common/segmented-tabs'
 
 const tabs = [
@@ -19,7 +19,7 @@ export function ProfileLayout() {
           <div className="mb-6 flex justify-center">
             <SegmentedTabs items={tabs} />
           </div>
-          <Outlet />
+          <SuspenseOutlet />
         </Container>
       </main>
       <Footer />

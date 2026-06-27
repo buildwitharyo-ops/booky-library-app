@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom'
 import { AdminNavbar } from './admin-navbar'
 import { Footer } from './footer'
+import { SuspenseOutlet } from './suspense-outlet'
 
 /** Admin chrome without the section tabs — used for the Add/Edit Book forms. */
 export function AdminFormLayout() {
@@ -8,7 +8,7 @@ export function AdminFormLayout() {
     <div className="flex min-h-svh flex-col">
       <AdminNavbar />
       <main className="flex-1">
-        <Outlet />
+        <SuspenseOutlet />
       </main>
       <Footer />
     </div>

@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
 import { AdminNavbar } from './admin-navbar'
 import { Footer } from './footer'
 import { Container } from './container'
+import { SuspenseOutlet } from './suspense-outlet'
 import { SegmentedTabs } from '@/components/common/segmented-tabs'
 
 const tabs = [
@@ -19,7 +19,7 @@ export function AdminLayout() {
           <div className="mb-6">
             <SegmentedTabs items={tabs} />
           </div>
-          <Outlet />
+          <SuspenseOutlet />
         </Container>
       </main>
       <Footer />
