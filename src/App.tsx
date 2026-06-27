@@ -9,6 +9,9 @@ import { HomePage } from '@/features/home/home-page'
 import { BookListPage } from '@/features/books/book-list-page'
 import { BookDetailPage } from '@/features/books/book-detail-page'
 import { AuthorBooksPage } from '@/features/authors/author-books-page'
+import { CartPage } from '@/features/cart/cart-page'
+import { CheckoutPage } from '@/features/cart/checkout-page'
+import { BorrowSuccessPage } from '@/features/cart/borrow-success-page'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -35,12 +38,9 @@ export default function App() {
 
         {/* Borrowing flow needs a signed-in user */}
         <Route element={<RequireAuth />}>
-          <Route path="cart" element={<Placeholder title="My Cart" />} />
-          <Route path="checkout" element={<Placeholder title="Checkout" />} />
-          <Route
-            path="borrow/success"
-            element={<Placeholder title="Borrowing Successful" />}
-          />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="borrow/success" element={<BorrowSuccessPage />} />
         </Route>
 
         <Route path="*" element={<Placeholder title="404 — Not Found" />} />
